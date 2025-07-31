@@ -20,7 +20,7 @@ USER_AGENT = (
 
 
 class CohereContentGenerator:
-    def __init__(self, api_key: str, model: str = "command-r"):
+    def __init__(self, api_key: str, model: str = "command-r-plus-08-2024"):
         self.client = cohere.Client(api_key)
         self.model = model
 
@@ -29,11 +29,7 @@ class CohereContentGenerator:
             # Use Chat API if available; fallback to generate if not
             response = self.client.chat(
                 model=self.model,
-                message=prompt,
-                temperature=0.7,
-                max_tokens=800,
-                chat_history=[],
-                connectors=[]
+                message=prompt
             )
             return response.text.strip()
         except Exception as e:
@@ -41,10 +37,7 @@ class CohereContentGenerator:
             try:
                 resp = self.client.generate(
                     model=self.model,
-                    prompt=prompt,
-                    max_tokens=800,
-                    temperature=0.7,
-                    stop_sequences=[]
+                    prompt=prompt
                 )
                 return resp.generations[0].text.strip()
             except Exception as e2:
