@@ -1,0 +1,11 @@
+streamlit
+cohere
+beautifulsoup4
+playwright
+aiohttp
+lxml
+datasets
+requests
+huggingface_hub
+humanize-ai-text
+google-generativeai
